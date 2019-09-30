@@ -1,0 +1,135 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+
+struct mtvleli{
+	int N;
+	unsigned int K;
+};
+
+class racionaluri{
+	private:
+		mtvleli p;
+		bool mynum;
+		void Norm(){
+			mtvleli TMP=p;
+			
+		}
+	public:
+		racionaluri(){
+			Set(0,1);
+		}
+		racionaluri(mtvleli p){
+			Set(p.N, p.K);
+		}
+		
+		
+		racionaluri(int a,int b){
+			Set(a,b);
+		}
+		
+		
+		void Set(int a, unsigned int b){
+				mynum=false;
+				p.N=a;
+				if(b==0) {
+					mynum=true;
+					p.K=1;
+				} else {
+					p.K=b;
+					Norm();
+				}
+		}
+		mtvleli Get(){
+			return p;
+		}
+		bool screen(){
+			return mynum;
+		}
+		void Display(){
+			cout<<"("<<p.N<<"/"<<p.K<<")";
+		}	
+};
+
+
+
+racionaluri operator +(racionaluri A, racionaluri B){
+	racionaluri TMP;
+	if((A.screen()+B.screen())) return TMP;
+	mtvleli i=A.Get();
+	mtvleli j=B.Get();
+	TMP.Set(i.N*j.K+i.K*j.N,i.K*j.K);
+	return TMP;
+}
+
+
+racionaluri operator -(racionaluri A, racionaluri B){
+	racionaluri TMP;
+	if((A.screen()+B.screen())) return TMP;
+	mtvleli i=A.Get();
+	mtvleli j=B.Get();
+	TMP.Set(i.N*j.K-i.K*j.N,i.K*j.K);
+	return TMP;
+}
+
+
+racionaluri operator *(racionaluri A, racionaluri B){
+	racionaluri TMP;
+	if((A.screen()+B.screen())) return TMP;
+	mtvleli i=A.Get();
+	mtvleli j=B.Get();
+	TMP.Set(i.N*j.N,i.K*j.K);
+	return TMP;
+}
+racionaluri operator /(racionaluri A, racionaluri B){
+	racionaluri TMP;
+	if((A.screen()+B.screen())) return TMP;
+	mtvleli i=A.Get();
+	mtvleli j=B.Get();
+	TMP.Set(i.N*j.K,i.K*j.N);
+	return TMP;
+}
+
+
+bool operator >(racionaluri A, racionaluri B){
+	
+	if((A.screen()+B.screen())) return false;
+	racionaluri TMP=A-B;
+	if(TMP.Get().N>0) return true;
+	else return false;
+
+	
+}
+
+
+bool operator <(racionaluri A, racionaluri B){
+		
+	if((A.screen()+B.screen())) return false;
+	racionaluri TMP=A-B;
+	if(TMP.Get().N<0) return true;
+	else return false;
+
+
+}
+
+int main(int argc, char** argv) {
+	
+	racionaluri a = racionaluri(12,6);
+	racionaluri b = racionaluri(1,2);
+	
+	racionaluri c = a+b;
+	a.Display(); cout << "+"; b.Display(); cout <<"="; c.Display(); cout << endl;
+	
+	c = a-b;
+	a.Display(); cout << "-"; b.Display(); cout <<"="; c.Display(); cout << endl;
+	
+	c = a*b;
+	a.Display(); cout << "*"; b.Display(); cout <<"="; c.Display(); cout << endl;
+	
+	c = a/b;
+	a.Display(); cout << "/"; b.Display(); cout <<"="; c.Display(); cout << endl;
+	
+	system("pause");
+	return 0;
+}
