@@ -1,0 +1,149 @@
+#include<iostream>
+#include<cmath>
+#define size 4
+
+ 
+using namespace std;
+ 
+class STACK
+{
+    private:
+        int num[size];
+        int top;
+    public:
+         
+   STACK(){
+    top=-1;
+}    
+       
+  int isEmpty(){
+    if(top==-1)
+        return 1;
+    else
+        return 0;   
+}     
+      
+int isFull(){
+    if(top==(size-1))
+        return 1;
+    else
+        return 0;
+}
+ 	  
+int push(int n){
+
+    if(isFull()){
+        return 0;
+    }
+    ++top;
+    num[top]=n;
+    return n;
+}	  
+	   
+	   
+    int pop(){
+
+  
+    int temp;
+  
+    if(isEmpty())
+        return 0;
+    temp=num[top];
+    --top;
+    return temp;
+     
+}  
+
+void displayItems(){
+
+if(size%3==1){
+cout<<"STACK is: ";
+    for(int i=(top); i>=0; i--)
+        cout<<num[i]<<" ";
+    cout<<endl<<endl;		
+}
+ else 
+ cout<<"stack-shi arsebuli elementebi araa 3-is jeradi";
+    
+
+}
+ 
+
+};
+
+
+class samk : private STACK {
+	private:
+		double a;
+		double b;
+		double c;
+	public:
+	
+		samk(double A, double B, double C){
+			set(A,B,C);
+		}
+		
+		void set(double A, double B, double C){
+			setA(A);
+			setB(B);
+			setC(C);
+		}
+		void setA(double A){
+			a=A;
+		}
+		
+		void setB(double B){
+			b=B;
+		}
+		
+		void setC(double C){
+			c=C;
+		}
+		
+		double getA(){
+			return a;
+		}
+		
+		double getB(){
+			return b;
+		}
+		
+		double getC(){
+			return c;
+		}
+		
+		double P(){
+			return a+b+c;
+		}
+		
+		void S(){
+			double P2=P()/2;
+			double tmp=P2*((P2-a)*(P2-b)*(P2-c));
+			if(tmp<=0) cout<< -1;
+			cout<< sqrt(tmp);
+			
+		}
+		
+
+		
+};
+
+
+ 
+
+int main(){
+
+STACK ps;
+for (int i=1; i<size; i++){
+	double a=0; cout<<"a="; cin>>a;
+	ps.push(a);
+}
+ps.displayItems();
+
+
+
+
+
+    return 0;
+     
+}
